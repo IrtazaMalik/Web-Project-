@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic Selection - Quiz Up</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+      background-image: url('/static/image11.jpg'); /* Replace with your image URL */
+      background-size: cover;
+      background-position: center;
+    }
+    .container {
+      text-align: center;
+    }
+    .topic-heading {
+      background-color: #7bed9f; /* Light green color */
+      padding: 10px 20px;
+      border-radius: 20px; /* Rounded corners */
+      margin-bottom: 40px;
+      display: inline-block;
+    }
+    .topic-heading h1 {
+      color: #fff;
+      font-size: 36px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Text shadow for contrast */
+      margin: 0;
+    }
+    .topic-button {
+      padding: 20px 40px;
+      font-size: 24px;
+      cursor: pointer;
+      border: none;
+      border-radius: 40px; /* Rounded corners */
+      background-color: #6c5ce7; /* Purple color */
+      color: #fff;
+      margin: 30px;
+      text-decoration: none;
+      display: inline-block;
+      position: relative; /* Relative positioning for pseudo elements */
+      overflow: hidden; /* Ensure overflow is hidden */
+      box-shadow: 0 5px 15px rgba(108, 92, 231, 0.5); /* Box shadow for depth */
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .topic-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
+      border-radius: 50%; /* Circular shape */
+      transition: all 0.3s ease; /* Smooth transition */
+      opacity: 0; /* Initially invisible */
+    }
+    .topic-button:hover::before {
+      width: 200%; /* Increase width on hover */
+      height: 200%; /* Increase height on hover */
+      border-radius: 0; /* Revert border radius on hover */
+      opacity: 1; /* Make visible on hover */
+    }
+    .topic-button:hover {
+      background-color: transparent; /* Transparent background on hover */
+      box-shadow: 0 8px 20px rgba(108, 92, 231, 0.8); /* Increase shadow on hover */
+      transform: translateY(-5px); /* Move button up on hover */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="topic-heading">
+      <h1>Choose a Topic</h1>
+    </div>
+    <a href="/chemistry" class="topic-button">Chemistry</a>
+    <a href="/physics" class="topic-button">Physics</a>
+    <a href="/maths" class="topic-button">Maths</a>
+  </div>
+</body>
+</html>

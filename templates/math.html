@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maths Quiz - Quiz Up</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+      background-image: url('/static/image13.jpg'); /* Replace with your image URL */
+      background-size: cover;
+      background-position: center;
+    }
+    .container {
+      text-align: center;
+    }
+    .text-box {
+      background-color: rgba(211, 211, 211, 0.8); /* Light grayish background */
+      color: #000; /* Black text color */
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .question {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .options {
+      display: flex;
+      justify-content: center;
+    }
+    .option-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: #fff;
+      margin: 10px;
+    }
+    .option-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="text-box">
+      <h1>Maths Quiz</h1>
+      <div class="question" id="question">Question goes here...</div>
+      <div class="options" id="options">
+        <!-- Options will be filled dynamically using JavaScript -->
+      </div>
+      <div class="score" id="score">Score: 0</div>
+    </div>
+  </div>
+
+  <script>
+    // Sample questions and answers for maths
+    const questions = [
+    {
+        question: "What is the value of Pi (π) to two decimal places?",
+        options: ["3.14", "3.12", "3.16", "3.18"],
+        answer: "3.14"
+    },
+    {
+        question: "What is the square root of 64?",
+        options: ["8", "6", "10", "12"],
+        answer: "8"
+    },
+    {
+        question: "What is the value of 'e' (Euler's number) rounded to two decimal places?",
+        options: ["2.71", "2.65", "3.00", "2.50"],
+        answer: "2.71"
+    },
+    {
+        question: "What is the value of 5! (factorial of 5)?",
+        options: ["120", "20", "25", "100"],
+        answer: "120"
+    },
+    {
+        question: "What is the result of 2^3 (2 raised to the power of 3)?",
+        options: ["8", "6", "10", "12"],
+        answer: "8"
+    },
+    {
+        question: "What is the value of log10(100)?",
+        options: ["2", "1", "10", "100"],
+        answer: "2"
+    },
+    {
+        question: "What is the value of sin(90°)?",
+        options: ["1", "0", "-1", "0.5"],
+        answer: "1"
+    },
+    {
+        question: "What is the area of a circle with radius 5 units (rounded to two decimal places)?",
+        options: ["78.54 sq units", "75.36 sq units", "50.24 sq units", "31.42 sq units"],
+        answer: "78.54 sq units"
+    },
+    {
+        question: "What is the value of tan(45°)?",
+        options: ["1", "0", "√2", "√3"],
+        answer: "1"
+    },
+    {
+        question: "What is the result of 3/4 expressed as a decimal (rounded to two decimal places)?",
+        options: ["0.75", "0.70", "0.80", "0.85"],
+        answer: "0.75"
+    }
+      // Add more questions here
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    // Function to display question and options
+    function displayQuestion() {
+      const questionElement = document.getElementById("question");
+      const optionsElement = document.getElementById("options");
+      const scoreElement = document.getElementById("score");
+
+      // Display question
+      questionElement.textContent = questions[currentQuestionIndex].question;
+
+      // Display options
+      optionsElement.innerHTML = "";
+      questions[currentQuestionIndex].options.forEach(option => {
+        const button = document.createElement("button");
+        button.textContent = option;
+        button.classList.add("option-button");
+        button.addEventListener("click", function() {
+          checkAnswer(option);
+        });
+        optionsElement.appendChild(button);
+      });
+
+      // Display score
+      scoreElement.textContent = "Score: " + score;
+    }
+
+    // Function to check user's answer
+    function checkAnswer(selectedOption) {
+      if (selectedOption === questions[currentQuestionIndex].answer) {
+        score++;
+      }
+      // Move to the next question
+      currentQuestionIndex++;
+      // Check if all questions are answered
+      if (currentQuestionIndex < questions.length) {
+        displayQuestion();
+      } else {
+        // Quiz completed
+        alert("Quiz completed! Your score is: " + score);
+        // You can send the score to the backend here
+      }
+    }
+
+    // Display the first question when the page loads
+    displayQuestion();
+  </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Quiz Up</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+      background-image: url('/static/image3.jpg'); /* Replace with your image URL */
+      background-size: cover;
+      background-position: center;
+    }
+    .container {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+      padding: 40px;
+      border-radius: 50%; /* Circle shape */
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+      width: 300px; /* Ensure the width and height are the same for a perfect circle */
+      height: 300px; /* Adjust as needed */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Text shadow for contrast */
+    }
+    input[type="text"],
+    input[type="password"] {
+      padding: 15px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      width: 80%; /* Adjusted width */
+      border-radius: 25px;
+      border: 1px solid #ccc;
+      outline: none; /* Remove default input focus outline */
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      cursor: pointer;
+      border: none;
+      border-radius: 25px;
+      background-color: #ff69b4; /* Pink color */
+      color: #fff;
+      transition: background-color 0.3s ease; /* Smooth hover transition */
+    }
+    button:hover {
+      background-color: #ff1493; /* Darker pink on hover */
+    }
+    .success-message {
+      color: #4caf50; /* Green color */
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    .signup-image {
+      width: 120px; /* Adjust image size as needed */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="/static/image4.png" alt="Sign Up Image" class="signup-image">
+    <form action="/register" method="POST" id="signupForm">
+      <input type="text" id="username" name="username" placeholder="Username" required>
+      <br>
+      <input type="password" id="password" name="password" placeholder="Password" required>
+      <br>
+      <button type="submit">Sign Up</button>
+    </form>
+    <div class="success-message" id="successMessage" style="display: none;">Registration successful!</div>
+  </div>
+
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get form values
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      // Validate form inputs (you can add more validation as needed)
+      if (username.trim() === "" || password.trim() === "") {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      // Send HTTP POST request to backend (you can implement this part)
+      // For demonstration purposes, just showing a success message
+      document.getElementById("signupForm").reset(); // Reset form
+      document.getElementById("successMessage").style.display = "block"; // Show success message
+
+      // Redirect to sign-in page after 5 seconds
+      setTimeout(function() {
+        window.location.href = "/signin";
+      }, 5000); // 5000 milliseconds = 5 seconds
+    });
+  </script>
+</body>
+</html>

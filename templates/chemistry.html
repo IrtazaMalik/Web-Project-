@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chemistry Quiz - Quiz Up</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+      background-image: url('/static/image14.jpg'); /* Replace with your image URL */
+      background-size: cover;
+      background-position: center;
+    }
+    .container {
+      text-align: center;
+    }
+    .question {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .options {
+      display: flex;
+      justify-content: center;
+    }
+    .option-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: #fff;
+      margin: 10px;
+    }
+    .option-button:hover {
+      background-color: #0056b3;
+    }
+    .text-box {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Chemistry Quiz</h1>
+    <div class="text-box">
+      <div class="question" id="question">Question goes here...</div>
+      <div class="options" id="options">
+        <!-- Options will be filled dynamically using JavaScript -->
+      </div>
+      <div class="score" id="score">Score: 0</div>
+    </div>
+  </div>
+
+  <script>
+    // Sample questions and answers for chemistry
+    const questions = [
+      {
+        question: "What is the chemical symbol for gold?",
+        options: ["Au", "Ag", "Fe", "Hg"],
+        answer: "Au"
+      },
+      {
+        question: "What is the atomic number of oxygen?",
+        options: ["8", "6", "12", "16"],
+        answer: "8"
+      },
+      {
+        question: "Which gas is known as laughing gas?",
+        options: ["Nitrogen", "Oxygen", "Carbon dioxide", "Nitrous oxide"],
+        answer: "Nitrous oxide"
+    },
+    {
+        question: "What is the chemical formula for water?",
+        options: ["H2O", "CO2", "NaCl", "C6H12O6"],
+        answer: "H2O"
+    },
+    {
+        question: "What is the chemical symbol for silver?",
+        options: ["Ag", "Au", "Fe", "Hg"],
+        answer: "Ag"
+    },
+    {
+        question: "Which gas do plants use during photosynthesis?",
+        options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"],
+        answer: "Carbon dioxide"
+    },
+    {
+        question: "What is the pH value of a neutral substance?",
+        options: ["7", "0", "14", "1"],
+        answer: "7"
+    },
+    {
+        question: "What is the chemical formula for table salt?",
+        options: ["NaCl", "H2O", "CO2", "C6H12O6"],
+        answer: "NaCl"
+    },
+    {
+        question: "What is the chemical symbol for iron?",
+        options: ["Fe", "Au", "Ag", "Hg"],
+        answer: "Fe"
+    },
+    {
+        question: "Which element is used as a fuel in nuclear reactors?",
+        options: ["Uranium", "Hydrogen", "Oxygen", "Carbon"],
+        answer: "Uranium"
+    }
+      // Add more questions here
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    // Function to display question and options
+    function displayQuestion() {
+      const questionElement = document.getElementById("question");
+      const optionsElement = document.getElementById("options");
+      const scoreElement = document.getElementById("score");
+
+      // Display question
+      questionElement.textContent = questions[currentQuestionIndex].question;
+
+      // Display options
+      optionsElement.innerHTML = "";
+      questions[currentQuestionIndex].options.forEach(option => {
+        const button = document.createElement("button");
+        button.textContent = option;
+        button.classList.add("option-button");
+        button.addEventListener("click", function() {
+          checkAnswer(option);
+        });
+        optionsElement.appendChild(button);
+      });
+
+      // Display score
+      scoreElement.textContent = "Score: " + score;
+    }
+
+    // Function to check user's answer
+    function checkAnswer(selectedOption) {
+      if (selectedOption === questions[currentQuestionIndex].answer) {
+        score++;
+      }
+      // Move to the next question
+      currentQuestionIndex++;
+      // Check if all questions are answered
+      if (currentQuestionIndex < questions.length) {
+        displayQuestion();
+      } else {
+        // Quiz completed
+        alert("Quiz completed! Your score is: " + score);
+        // You can send the score to the backend here
+      }
+    }
+
+    // Display the first question when the page loads
+    displayQuestion();
+  </script>
+</body>
+</html>

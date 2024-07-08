@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - Quiz Up</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+      background-image: url('/static/image6.jpg'); /* Replace with your image URL */
+      background-size: cover;
+      background-position: center;
+    }
+
+    .container {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+      padding: 40px;
+      border-radius: 20px; /* Rounded corners */
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+      max-width: 400px;
+      position: relative; /* Relative positioning for absolute positioning of elements */
+    }
+
+    .image {
+      margin-bottom: 20px; /* Spacing between image and form */
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      padding: 15px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      width: 80%; /* Adjusted width */
+      border-radius: 25px;
+      border: none;
+      background-color: #f2f2f2; /* Light gray background */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+      transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      outline: none;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Highlight box shadow on focus */
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      cursor: pointer;
+      border: none;
+      border-radius: 25px;
+      background-color: #6c5ce7; /* Purple color */
+      color: #fff;
+      transition: background-color 0.3s ease; /* Smooth hover transition */
+      position: relative;
+      overflow: hidden; /* Ensure overflow is hidden */
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background: url('/static/sign-in-icon.png') no-repeat center center / cover; /* Image background */
+      opacity: 0; /* Initially invisible */
+      transition: opacity 0.3s ease; /* Smooth transition */
+    }
+
+    button:hover::before {
+      opacity: 0.4; /* Fade in the image on hover */
+    }
+
+    button span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cute-things {
+      font-size: 14px; /* Adjust font size */
+      color: #666; /* Gray color */
+      margin-top: 10px; /* Spacing from the buttons */
+    }
+
+    .cute-things img {
+      width: 30px; /* Adjust size of cute elements */
+      margin: 0 5px; /* Spacing between cute elements */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <div class="image">
+      <img src="/static/image7.png" >
+    </div>
+    <form action="/login" method="POST" id="signinForm">
+      <input type="text" id="username" name="username" placeholder="Username" required>
+      <br>
+      <input type="password" id="password" name="password" placeholder="Password" required>
+      <br>
+      <button type="submit"><span>Sign In</span></button>
+    </form>
+    <div class="cute-things">
+      <span>Cute elements:</span>
+      <img src="/static/image8.png" alt="Heart icon">
+      <img src="/static/image9.jpg" alt="Star icon">
+      <img src="/static/image10.png" alt="Flower icon">
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("signinForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get form values
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      // Validate form inputs (you can add more validation as needed)
+      if (username.trim() === "" || password.trim() === "") {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      // Send HTTP POST request to backend (you can implement this part)
+      // For demonstration purposes, just alerting success
+      alert("Sign in successful! Redirecting to topic selection page.");
+      window.location.href = "/topics"; // Redirect to topic selection page
+    });
+  </script>
+</body>
+</html>

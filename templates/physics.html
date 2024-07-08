@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physics Quiz - Quiz Up</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+      background-image: url('/static/image12.jpg'); /* Replace with your image URL */
+      background-size: cover;
+      background-position: center;
+    }
+    .container {
+      text-align: center;
+    }
+    .quiz-box {
+      background-color: rgba(211, 211, 211, 0.8); /* Light grayish background */
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .question {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .options {
+      display: flex;
+      justify-content: center;
+    }
+    .option-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: #fff;
+      margin: 10px;
+    }
+    .option-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="quiz-box">
+      <h1>Physics Quiz</h1>
+      <div class="question" id="question">Question goes here...</div>
+      <div class="options" id="options">
+        <!-- Options will be filled dynamically using JavaScript -->
+      </div>
+      <div class="score" id="score">Score: 0</div>
+    </div>
+  </div>
+
+  <script>
+    // Sample questions and answers for physics
+    const questions = [
+    {
+        question: "What is the SI unit of force?",
+        options: ["Newton", "Watt", "Joule", "Kilogram"],
+        answer: "Newton"
+    },
+    {
+        question: "What is the acceleration due to gravity on Earth?",
+        options: ["9.8 m/s^2", "8.2 m/s^2", "10.5 m/s^2", "7.6 m/s^2"],
+        answer: "9.8 m/s^2"
+    },
+    {
+        question: "What is the SI unit of electric current?",
+        options: ["Ampere", "Volt", "Ohm", "Coulomb"],
+        answer: "Ampere"
+    },
+    {
+        question: "What is the SI unit of energy?",
+        options: ["Joule", "Watt", "Newton", "Coulomb"],
+        answer: "Joule"
+    },
+    {
+        question: "Which law states that every action has an equal and opposite reaction?",
+        options: ["Newton's third law of motion", "Newton's first law of motion", "Newton's second law of motion", "Law of inertia"],
+        answer: "Newton's third law of motion"
+    },
+    {
+        question: "What is the speed of light in vacuum?",
+        options: ["299,792,458 m/s", "300,000,000 m/s", "285,000,000 m/s", "350,000,000 m/s"],
+        answer: "299,792,458 m/s"
+    },
+    {
+        question: "What is the SI unit of power?",
+        options: ["Watt", "Joule", "Newton", "Ampere"],
+        answer: "Watt"
+    },
+    {
+        question: "Which scientist proposed the theory of relativity?",
+        options: ["Albert Einstein", "Isaac Newton", "Galileo Galilei", "Stephen Hawking"],
+        answer: "Albert Einstein"
+    },
+    {
+        question: "What is the SI unit of pressure?",
+        options: ["Pascal", "Newton", "Joule", "Watt"],
+        answer: "Pascal"
+    },
+    {
+        question: "Which instrument is used to measure electric current?",
+        options: ["Ammeter", "Voltmeter", "Ohmmeter", "Wattmeter"],
+        answer: "Ammeter"
+    }
+      // Add more questions here
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    // Function to display question and options
+    function displayQuestion() {
+      const questionElement = document.getElementById("question");
+      const optionsElement = document.getElementById("options");
+      const scoreElement = document.getElementById("score");
+
+      // Display question
+      questionElement.textContent = questions[currentQuestionIndex].question;
+
+      // Display options
+      optionsElement.innerHTML = "";
+      questions[currentQuestionIndex].options.forEach(option => {
+        const button = document.createElement("button");
+        button.textContent = option;
+        button.classList.add("option-button");
+        button.addEventListener("click", function() {
+          checkAnswer(option);
+        });
+        optionsElement.appendChild(button);
+      });
+
+      // Display score
+      scoreElement.textContent = "Score: " + score;
+    }
+
+    // Function to check user's answer
+    function checkAnswer(selectedOption) {
+      if (selectedOption === questions[currentQuestionIndex].answer) {
+        score++;
+      }
+      // Move to the next question
+      currentQuestionIndex++;
+      // Check if all questions are answered
+      if (currentQuestionIndex < questions.length) {
+        displayQuestion();
+      } else {
+        // Quiz completed
+        alert("Quiz completed! Your score is: " + score);
+        // You can send the score to the backend here
+      }
+    }
+
+    // Display the first question when the page loads
+    displayQuestion();
+  </script>
+</body>
+</html>
